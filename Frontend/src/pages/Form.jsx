@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Form.css';
-import Signup from '../auth/Signup';
+import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 
 const Form = ({ setUser }) => {
@@ -31,7 +31,7 @@ const Form = ({ setUser }) => {
           <button onClick={handleLoginClick} className={activeButton === 'login' ? 'active' : ''}>Log In</button>
         </div>
         <div className='form'>
-          {showSignUp && <Signup handleLoginClick={handleLoginClick} />}
+          {showSignUp && <SignUp handleLoginClick={handleLoginClick} />}
           {showLogin && <Login setUser={setUser} />}
         </div>
       </div>

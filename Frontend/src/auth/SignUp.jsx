@@ -3,7 +3,7 @@ import '../styles/SignUp.css';
 import axios from 'axios';
 import { USER_API_END_POINT } from '../utils/constant';
 
-const Signup = ({ handleLoginClick }) => {
+const SignUp = ({ handleLoginClick }) => {
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -86,4 +86,4 @@ const Signup = ({ handleLoginClick }) => {
     )
 }
 
-export default Signup;
+export default SignUp;
