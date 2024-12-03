@@ -1,0 +1,171 @@
+.analytics {
+    height: 100vh;
+    width: 82vw;
+    background-color: #EDEDED;
+}
+
+.quizAnalysisCon {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quizAnalysisCon>p {
+    color: #5076FF;
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 2.9rem;
+}
+
+.quizAnalysisDiv {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+table {
+    border: none;
+    border-spacing: 0;
+    text-align: center;
+}
+
+table tr:nth-child(even) th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+    
+table tr:nth-child(even) th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table tr:nth-child(even) td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+table tr:nth-child(even) td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+th {
+    background-color: #5076FF;
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2rem;
+    height: 2rem;
+}
+
+th:first-child {
+    width: 4rem;
+}
+
+th:nth-child(2) {
+    width: 10rem;
+}
+
+th:nth-child(4) {
+    width: 10rem;
+}
+
+th:nth-child(5) {
+    width: 9.5rem;
+}
+
+th:nth-child(6) {
+    width: 19rem;
+}
+
+tbody tr td:nth-child(-n+4) {
+    color: #000000;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2rem;
+}
+
+tbody tr td:last-child>button u {
+    color: #000000;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 0.85rem;
+    margin-left: 0.6rem;
+}
+
+tbody tr td:last-child {
+    text-align: left;
+}
+
+tbody tr td:nth-child(5) {
+    text-align: left;
+}
+
+tbody tr td:nth-child(5)>button {
+    margin-left: 1.1rem;
+}
+
+thead tr th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+thead tr th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #B3C4FF;
+    height: 2rem;
+}
+
+table tr:nth-child(odd) {
+    height: 2.2rem;
+}
+
+.analysisLinkToast {
+    position: fixed;
+    z-index: 100;
+    top: 4rem;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    height: 2.2rem;
+    width: 16.5rem;
+    border-radius: 5px;
+}
+
+.analysisLinkToast>p {
+    color: #474444;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 0.8rem;
+    margin-left: 1rem;
+}
+
+.analysisLinkToast>img {
+    margin-left: 1rem;
+    height: 17px;
+    width: 17px;
+}
+
+.analysisLinkToast>div {
+    width: 8%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 2.5rem;
+}
+
+.analysisLinkToast button {
+    height: 1rem;
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,123 @@
+.questionAnalysis {
+    height: 100vh;
+    width: 82vw;
+    background-color: #EDEDED;
+}
+
+.questionAnalysisHeadingCon {
+    margin-left: 7rem;
+    width: 84%;
+    height: 22.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3.2rem;
+    padding-bottom: 2.3rem;
+}
+
+.questionAnalysisHeadingCon>span {
+    display: flex;
+}
+
+.questionAnalysisHeadingCon>span>p {
+    color: #5076FF;
+    font-size: 2.1rem;
+    font-weight: 600;
+    line-height: 2.2rem;
+}
+
+.questionAnalysisHeadingCon>div>p {
+    color: #FF5D01;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.4rem;    
+}
+
+.questionAnalysisQuestionsCon {
+    width: 70%;
+    height: 77.5%;
+    margin-left: 7rem;
+    overflow-y: auto;
+}
+
+.questionAnalysisQuestionsCon::-webkit-scrollbar{
+    display: none;
+}
+
+.questionAnalysisQuestionsCon>div {
+    width: 100%;
+    border-bottom: 2px solid #D7D7D7;
+}
+
+.questionAnalysisQuestion {
+    margin-top: 1.3rem;
+    color: #000000;
+    font-size: 1.55rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+}
+
+.questionAnalysisInfoCon {
+    width: 100%;
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.questionAnalysisInfoCon>div {
+    width: 30%;
+    height: 5.5rem;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.questionAnalysisInfoCon>div>span {
+    color: #474444;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.7rem;
+}
+
+.questionAnalysisInfoCon>div>p {
+    color: #474444;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1rem;
+}
+
+.questionAnalysisPollInfoCon {
+    width: 100%;
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.questionAnalysisPollInfoCon>div {
+    width: 22%;
+    height: 5.5rem;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.questionAnalysisPollInfoCon>div>span {
+    color: #474444;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.7rem;
+}
+
+.questionAnalysisPollInfoCon>div>p {
+    color: #474444;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1rem;
+}

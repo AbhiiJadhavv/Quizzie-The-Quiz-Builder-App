@@ -1,0 +1,201 @@
+.dashboard {
+    height: 100vh;
+    width: 82vw;
+    background-color: #EDEDED;
+}
+
+.dashboardStats {
+    height: 44%;
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardStats>div {
+    height: 7.1rem;
+    width: 17rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.quizCreatedCon div {
+    color: #FF5D01;
+}
+
+.questionsCreatedCon div {
+    color: #60B84B;
+}
+
+.totalImpressionsCon div {
+    color: #5076FF;
+}
+
+.quizCreatedLine1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+}
+
+.quizCreatedData {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 2.9rem;
+    font-weight: 600;
+    line-height: 3.1rem;
+    padding-bottom: 0.4rem;
+    padding-right: 1.5rem;
+}
+
+.questionsCreatedData {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 2.9rem;
+    font-weight: 600;
+    line-height: 3.1rem;
+    padding-bottom: 0.4rem;
+    padding-right: 1.5rem;
+}
+
+.totalImpressionsData {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 2.9rem;
+    font-weight: 600;
+    line-height: 3.1rem;
+    padding-bottom: 0.4rem;
+    padding-right: 1.5rem;
+}
+
+.quizCreatedLine1P {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    padding-bottom: 0.5rem;
+}
+
+.quizCreatedLine2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 40%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+}
+
+.trendingQuizs {
+    display: flex;
+    flex-direction: column;
+    margin-left: 7rem;
+    margin-right: 7rem;
+}
+
+.trendingQuizsName {
+    width: 100%;
+    text-align: left;
+}
+
+.trendingQuizsName>p {
+    color: #474444;
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 2.2rem;
+    text-align: left;
+    margin-left: 1.5rem;
+}
+
+.trendingQuizsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 3rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-left: 2.7rem;
+    margin-right: 2.5rem;
+}
+
+.trendingQuizsContainer>div {
+    background-color: #ffffff;
+    height: 3.5rem;
+    width: 12rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem;
+}
+
+.trendingQuizsLine1 {
+    display: flex;
+    width: 100%;
+    height: 65%;
+}
+
+.trendingQuizsImpressionsCon {
+    display: flex;
+}
+
+.quizName {
+    width: 60%;
+    height: 100%;
+    color: #474444;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.trendingQuizsImpressionsCon {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.trendingQuizsImpressions {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #FF5D01;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1rem;
+    padding-bottom: 0.2rem;
+}
+
+.trendingQuizsImage {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.4rem;
+}
+
+.trendingQuizsLine2 {
+    width: 100%;
+    height: 35%;
+    color: #60B84B;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 0.75rem;
+}
