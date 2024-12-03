@@ -67,7 +67,7 @@ const HomePage = () => {
                 setUser(null);
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
-                navigate("/");
+                navigate("/form");
                 // toast.success(res.data.message);
                 console.log("Logged out successfully.");
             }
