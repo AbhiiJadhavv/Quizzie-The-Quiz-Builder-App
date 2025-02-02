@@ -61,14 +61,17 @@ export const getDashboardData = async (req, res) => {
   
       // Total quizzes created by the user
       const totalQuizzes = await Quiz.countDocuments({ user: userId });
+
+      const quizzes = await Quiz.find({ user: userId }).select("name type questions");
+      const totalQuestions = quizzes.reduce((acc, quiz) => acc + quiz.questions.length, 0);
   
       // Total questions created by the user
-      const totalQuestionsResult = await Quiz.aggregate([
-        { $match: { user: userId } },
-        { $project: { questionCount: { $size: '$questions' } } },
-        { $group: { _id: null, totalQuestions: { $sum: '$questionCount' } } }
-      ]);
-      const totalQuestions = totalQuestionsResult[0]?.totalQuestions || 0;
+      // const totalQuestionsResult = await Quiz.aggregate([
+      //   { $match: { user: userId } },
+      //   { $project: { questionCount: { $size: '$questions' } } },
+      //   { $group: { _id: null, totalQuestions: { $sum: '$questionCount' } } }
+      // ]);
+      // const totalQuestions = totalQuestionsResult[0]?.totalQuestions || 0;
   
       // Total impressions (responses to user's questions)
       const totalImpressionsResult = await Response.aggregate([
