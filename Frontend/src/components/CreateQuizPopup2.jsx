@@ -5,8 +5,9 @@ import CrossCloseIcon from '../assets/CrossCloseIcon.png';
 import OptionDeleteIcon from '../assets/OptionDeleteIcon.png';
 import axios from "axios";
 import { QUIZ_API_END_POINT } from '../utils/constant';
+import { fetchDashboardData } from '../utils/dashboardData';
 
-function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQuiz, quizData, setQuizData, user, setSharingQuiz }) {
+function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQuiz, quizData, setQuizData, user, setSharingQuiz, setDashboardData }) {
     const [questions, setQuestions] = useState([
         { id: 1, text: '', optionType: 'text', options: [{ id: 1, text: '', image: '' }, { id: 2, text: '', image: '' }], correctOption: '', timer: 'off' }
     ]);
@@ -139,6 +140,7 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
             if (response.status === 201) {
                 alert('Quiz created successfully!');
                 setSharingQuiz(response.data.quiz);
+                fetchDashboardData(setDashboardData);
             }
         } catch (error) {
             console.error('Error creating quiz:', error);

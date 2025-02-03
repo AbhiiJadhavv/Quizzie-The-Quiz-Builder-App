@@ -20,6 +20,12 @@ const HomePage = () => {
     const [showCreateQuiz2, setShowCreateQuiz2] = useState(false);
     const [showShareQuiz, setShowShareQuiz] = useState(false);
     const [sharingQuiz, setSharingQuiz] = useState(null);
+    const [dashboardData, setDashboardData] = useState({
+        totalQuizzes: 0,
+        totalQuestions: 0,
+        totalImpressions: 0,
+        trendingQuizzes: []
+    });
     const [quizdata, setQuizData] = useState({
         name: '',
         type: '',
@@ -51,7 +57,7 @@ const HomePage = () => {
     const renderContent = () => {
         switch (activeTab) {
             case 'dashboard':
-                return <Dashboard user={user} />;
+                return <Dashboard user={user} dashboardData={dashboardData} />;
             case 'analytics':
                 return <Analytics user={user} setActiveTab={setActiveTab} />;
             case 'questionAnalysis':
@@ -99,7 +105,7 @@ const HomePage = () => {
                 <CreateQuizPopup setShowCreateQuiz={setShowCreateQuiz} setShowCreateQuiz2={setShowCreateQuiz2} setQuizData={setQuizData} />
             )}
             {showCreateQuiz2 && (
-                <CreateQuizPopup2 setShowCreateQuiz2={setShowCreateQuiz2} setShowCreateQuiz={setShowCreateQuiz} setShowShareQuiz={setShowShareQuiz} quizData={quizdata} setQuizData={setQuizData} user={user} setSharingQuiz={setSharingQuiz} />
+                <CreateQuizPopup2 setShowCreateQuiz2={setShowCreateQuiz2} setShowCreateQuiz={setShowCreateQuiz} setShowShareQuiz={setShowShareQuiz} quizData={quizdata} setQuizData={setQuizData} user={user} setSharingQuiz={setSharingQuiz} setDashboardData={setDashboardData} />
             )}
             {showShareQuiz && (
                 <ShareQuizPopup setShowShareQuiz={setShowShareQuiz} sharingQuiz={sharingQuiz} />

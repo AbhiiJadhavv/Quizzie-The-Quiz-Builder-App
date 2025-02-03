@@ -1,36 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import '../styles/Dashboard.css';
 import ImpressionsIcon from '../assets/ImpressionsIcon.png';
-import { QUIZ_API_END_POINT } from '../utils/constant';
+import { fetchDashboardData } from '../utils/dashboardData';
 
-function Dashboard({ user }) {
-  const [dashboardData, setDashboardData] = useState({
-    totalQuizzes: 0,
-    totalQuestions: 0,
-    totalImpressions: 0,
-    trendingQuizzes: []
-  });
+function Dashboard({ user, dashboardData }) {
 
   useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        const token = localStorage.getItem('token'); // Get the token for authentication
-        const { data } = await axios.post(
-          `${QUIZ_API_END_POINT}/dashboard`, // Use POST to send data in the body
-          { userId: user._id }, // Pass user._id in the request body
-          {
-            headers: { Authorization: `Bearer ${token}` }, // Pass token in headers
-            withCredentials: true
-          }
-        );
-        console.log('Dashboard data:', data); // Debug log for validation
-        setDashboardData(data);
-      } catch (error) {
-        console.error('Error fetching dashboard data:', error);
-      }
-    };
-  
     fetchDashboardData();
   }, [user._id]);  
 
