@@ -9,6 +9,7 @@ import Analytics from '../components/Analytics';
 import CreateQuizPopup from '../components/CreateQuizPopup';
 import QuestionAnalysis from '../components/QuestionAnalysis';
 import CreateQuizPopup2 from '../components/CreateQuizPopup2';
+import ShareQuizPopup from '../components/ShareQuizPopup';
 
 const HomePage = () => {
     const { user, setUser } = useUser();
