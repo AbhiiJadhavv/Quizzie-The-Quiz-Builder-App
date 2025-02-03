@@ -151,7 +151,7 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
             setShowShareQuiz(true);
         }
     };
-    
+
     return (
         <div className='createQuizPopup2Container'>
             <div className='createQuizPopup2'>
