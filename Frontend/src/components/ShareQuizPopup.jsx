@@ -22,8 +22,9 @@ function ShareQuizPopup({ setShowShareQuiz, sharingQuiz }) {
     setHideCrossButton(true);
   };
 
+  const shareableLink = `${window.location.origin}/sharedquiz/${sharingQuiz._id}`;
+
   const handleShare = () => {
-    const shareableLink = `${window.location.origin}/sharedquiz/${sharingQuiz._id}`;
     navigator.clipboard
       .writeText(shareableLink)
       .then(() => {
