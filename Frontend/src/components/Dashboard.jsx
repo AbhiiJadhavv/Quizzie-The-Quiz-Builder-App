@@ -3,11 +3,11 @@ import '../styles/Dashboard.css';
 import ImpressionsIcon from '../assets/ImpressionsIcon.png';
 import { fetchDashboardData } from '../utils/dashboardData';
 
-function Dashboard({ user, dashboardData }) {
+function Dashboard({ user, dashboardData, setDashboardData }) {
 
   useEffect(() => {
-    fetchDashboardData();
-  }, [user._id]);  
+    fetchDashboardData(setDashboardData, user);
+  }, [user._id]);
 
   return (
     <div className='dashboard'>

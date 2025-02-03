@@ -140,7 +140,7 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
             if (response.status === 201) {
                 alert('Quiz created successfully!');
                 setSharingQuiz(response.data.quiz);
-                fetchDashboardData(setDashboardData);
+                fetchDashboardData(setDashboardData, user);
             }
         } catch (error) {
             console.error('Error creating quiz:', error);

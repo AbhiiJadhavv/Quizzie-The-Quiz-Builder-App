@@ -1,7 +1,7 @@
 import axios from "axios";
 import { QUIZ_API_END_POINT } from "./constant";
 
-export const fetchDashboardData = async (setDashboardData) => {
+export const fetchDashboardData = async (setDashboardData, user) => {
     try {
         const token = localStorage.getItem('token'); // Get the token for authentication
         const { data } = await axios.post(
