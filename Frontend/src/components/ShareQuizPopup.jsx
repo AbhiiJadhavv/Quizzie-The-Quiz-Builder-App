@@ -4,7 +4,7 @@ import CrossCloseIcon2 from '../assets/CrossCloseIcon2.png';
 import CrossCloseIcon from '../assets/CrossCloseIcon.png';
 import TickIcon from '../assets/TickIcon.png';
 
-function ShareQuizPopup({ setShowShareQuiz }) {
+function ShareQuizPopup({ setShowShareQuiz, sharingQuiz }) {
   const [showAnalysisLinkToast, setShowAnalysisLinkToast] = useState(false);
   const [hideCrossButton, setHideCrossButton] = useState(true);
 
@@ -23,7 +23,16 @@ function ShareQuizPopup({ setShowShareQuiz }) {
   };
 
   const handleShare = () => {
-    openAnalysisLinkToast();
+    const shareableLink = `${window.location.origin}/sharedquiz/${sharingQuiz._id}`;
+    navigator.clipboard
+      .writeText(shareableLink)
+      .then(() => {
+        console.log("Link copied to clipboard");
+        openAnalysisLinkToast();
+      })
+      .catch(() => {
+        console.log("Failed to copy link");
+      });
   }
 
   return (
@@ -43,7 +52,7 @@ function ShareQuizPopup({ setShowShareQuiz }) {
         </div>
         <div className='quizLinkShareInfo'>
           <p>Congrats your Quiz is<br />Published!</p>
-          <input type="text" id="input" placeholder='your link is here' readOnly></input>
+          <input type="text" id="input" placeholder='your link is here' readOnly>{shareableLink}</input>
           <button onClick={handleShare}>Share</button>
         </div>
       </div>

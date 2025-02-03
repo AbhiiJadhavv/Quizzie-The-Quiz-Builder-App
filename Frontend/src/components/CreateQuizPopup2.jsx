@@ -6,7 +6,7 @@ import OptionDeleteIcon from '../assets/OptionDeleteIcon.png';
 import axios from "axios";
 import { QUIZ_API_END_POINT } from '../utils/constant';
 
-function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQuiz, quizData, setQuizData, user }) {
+function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQuiz, quizData, setQuizData, user, setSharingQuiz }) {
     const [questions, setQuestions] = useState([
         { id: 1, text: '', optionType: 'text', options: [{ id: 1, text: '', image: '' }, { id: 2, text: '', image: '' }], correctOption: '', timer: 'off' }
     ]);
@@ -138,7 +138,7 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
 
             if (response.status === 201) {
                 alert('Quiz created successfully!');
-                console.log(response.data.quiz);
+                setSharingQuiz(response.data.quiz);
             }
         } catch (error) {
             console.error('Error creating quiz:', error);

@@ -19,6 +19,7 @@ const HomePage = () => {
     const [showCreateQuiz, setShowCreateQuiz] = useState(false);
     const [showCreateQuiz2, setShowCreateQuiz2] = useState(false);
     const [showShareQuiz, setShowShareQuiz] = useState(false);
+    const [sharingQuiz, setSharingQuiz] = useState(null);
     const [quizdata, setQuizData] = useState({
         name: '',
         type: '',
@@ -98,10 +99,10 @@ const HomePage = () => {
                 <CreateQuizPopup setShowCreateQuiz={setShowCreateQuiz} setShowCreateQuiz2={setShowCreateQuiz2} setQuizData={setQuizData} />
             )}
             {showCreateQuiz2 && (
-                <CreateQuizPopup2 setShowCreateQuiz2={setShowCreateQuiz2} setShowCreateQuiz={setShowCreateQuiz} setShowShareQuiz={setShowShareQuiz} quizData={quizdata} setQuizData={setQuizData} user={user} />
+                <CreateQuizPopup2 setShowCreateQuiz2={setShowCreateQuiz2} setShowCreateQuiz={setShowCreateQuiz} setShowShareQuiz={setShowShareQuiz} quizData={quizdata} setQuizData={setQuizData} user={user} setSharingQuiz={setSharingQuiz} />
             )}
             {showShareQuiz && (
-                <ShareQuizPopup setShowShareQuiz={setShowShareQuiz} />
+                <ShareQuizPopup setShowShareQuiz={setShowShareQuiz} sharingQuiz={sharingQuiz} />
             )}
         </div>
     )
