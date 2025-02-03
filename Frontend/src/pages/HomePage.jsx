@@ -57,13 +57,13 @@ const HomePage = () => {
     const renderContent = () => {
         switch (activeTab) {
             case 'dashboard':
-                return <Dashboard user={user} dashboardData={dashboardData} />;
+                return <Dashboard user={user} dashboardData={dashboardData} setDashboardData={setDashboardData} />;
             case 'analytics':
                 return <Analytics user={user} setActiveTab={setActiveTab} />;
             case 'questionAnalysis':
                 return <QuestionAnalysis user={user} />;
             default:
-                return <Dashboard user={user} />;
+                return <Dashboard user={user} dashboardData={dashboardData} setDashboardData={setDashboardData} />;
         }
     }
 
