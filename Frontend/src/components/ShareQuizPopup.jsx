@@ -53,7 +53,7 @@ function ShareQuizPopup({ setShowShareQuiz, sharingQuiz }) {
         </div>
         <div className='quizLinkShareInfo'>
           <p>Congrats your Quiz is<br />Published!</p>
-          <input type="text" id="input" placeholder='your link is here' readOnly>{shareableLink}</input>
+          <input type="text" id="input" placeholder='your link is here' readOnly value={shareableLink} ></input>
           <button onClick={handleShare}>Share</button>
         </div>
       </div>
