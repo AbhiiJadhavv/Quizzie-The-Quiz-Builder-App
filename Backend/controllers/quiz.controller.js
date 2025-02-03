@@ -62,10 +62,10 @@ export const getDashboardData = async (req, res) => {
       // Total quizzes created by the user
       const totalQuizzes = await Quiz.countDocuments({ user: userId });
 
+      // Total questions created by the user
       const quizzes = await Quiz.find({ user: userId }).select("name type questions");
       const totalQuestions = quizzes.reduce((acc, quiz) => acc + quiz.questions.length, 0);
   
-      // Total questions created by the user
       // const totalQuestionsResult = await Quiz.aggregate([
       //   { $match: { user: userId } },
       //   { $project: { questionCount: { $size: '$questions' } } },

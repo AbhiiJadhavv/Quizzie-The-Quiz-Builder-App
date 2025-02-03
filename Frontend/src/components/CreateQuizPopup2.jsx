@@ -138,6 +138,7 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
 
             if (response.status === 201) {
                 alert('Quiz created successfully!');
+                console.log(response.data.quiz);
             }
         } catch (error) {
             console.error('Error creating quiz:', error);
