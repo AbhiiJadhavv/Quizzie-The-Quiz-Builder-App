@@ -266,6 +266,10 @@
     cursor: pointer;
 }
 
+.pollRadio {
+    visibility: hidden;
+}
+
 .errorMessagesCreateCon {
     height: 100%;
     width: 20%;
