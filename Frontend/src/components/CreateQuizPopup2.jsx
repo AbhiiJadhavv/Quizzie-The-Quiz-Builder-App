@@ -217,12 +217,14 @@ function CreateQuizPopup2({ setShowCreateQuiz, setShowCreateQuiz2, setShowShareQ
                                 <div className='quizOptions'>
                                     {question.options.map(option => (
                                         <div key={option.id} className='option'>
-                                            <input
-                                                type="radio"
-                                                name={`correctOption${question.id}`}
-                                                checked={question.correctOption === option.id}
-                                                onChange={() => setQuestions(questions.map(q => q.id === question.id ? { ...q, correctOption: option.id } : q))}
-                                            />
+                                            {quizData.type === 'qna' && (
+                                                <input
+                                                    type="radio"
+                                                    name={`correctOption${question.id}`}
+                                                    checked={question.correctOption === option.id}
+                                                    onChange={() => setQuestions(questions.map(q => q.id === question.id ? { ...q, correctOption: option.id } : q))}
+                                                />
+                                            )}
                                             {question.optionType === 'text' && (
                                                 <input
                                                     type="text"
