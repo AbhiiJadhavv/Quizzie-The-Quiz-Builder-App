@@ -92,11 +92,34 @@
     width: 20rem;
     background-color: #F0F0F0;
     border-radius: 10px;
+    cursor: pointer;
+    gap: 0.5rem;
+}
+
+.quizPageOptions>div>p {
     color: #000000;
     font-size: 1.7rem;
     font-weight: 600;
     line-height: 2rem;
-    cursor: pointer;
+}
+
+.quizPageOptions>div>div {
+    width: 45%;
+    height: 90%;
+    border-radius: 10px;
+}
+
+.quizPageOptions>div:hover {
+    background-color: hsl(0, 0%, 85%);
+}
+
+.quizPageOptions:active {
+    transform: scale(0.94);
+}
+
+.activeOptionShared {
+    border: 5px solid #5076FF;
+    border-radius: 5px;
 }
 
 .quizPageButton {
@@ -139,7 +162,7 @@
         height: 100%;
         width: 15%;
     }
-    
+
     .quizPageTimer>p {
         font-size: 1.5rem;
         line-height: 1.5rem;
@@ -149,26 +172,26 @@
         padding: 0 1.5rem;
         justify-content: center;
     }
-    
+
     .quizPageQuestion>p {
         font-size: 1.5rem;
         line-height: 1.9rem;
         text-align: center;
     }
-    
+
     .quizPageOptions {
         row-gap: 1.2rem;
         padding: 1rem;
         margin-top: 1rem;
     }
-    
+
     .quizPageOptions>div {
         font-size: 1.2rem;
         line-height: 2rem;
         height: 4rem;
         width: 16rem;
     }
-    
+
     .quizPageButton {
         width: 100%;
         display: flex;
@@ -176,7 +199,7 @@
         border-radius: 10px;
         margin-top: 0.4rem;
     }
-    
+
     .quizPageButton>button {
         width: 9rem;
         height: 2rem;
