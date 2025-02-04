@@ -125,6 +125,7 @@ export const getDashboardData = async (req, res) => {
 export const getQuizById = async (req, res) => {
   try {
     const { quizId } = req.params;
+    console.log(quizId);
     const quiz = await Quiz.findById(quizId);
 
     if (!quiz) return res.status(404).json({ error: "Quiz not found" });
