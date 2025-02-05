@@ -37,16 +37,19 @@ const SharedQuiz = () => {
 
   const handleNext = () => {
     if (selectedOption) {
-      setResponses([...responses, {
-        questionId: quiz.questions[currentQuestionIndex]._id,
-        selectedOptionId: selectedOption
-      }]);
+      setResponses(prevResponses => [
+        ...prevResponses,
+        {
+          questionId: quiz.questions[currentQuestionIndex]._id,
+          selectedOptionId: selectedOption
+        }
+      ]);
       setSelectedOption(null);
 
       if (currentQuestionIndex < quiz.questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        handleSubmit();
+        setTimeout(handleSubmit, 100);  // Slight delay to ensure state updates
       }
     } else {
       alert("Please select an option before proceeding.");
@@ -54,17 +57,25 @@ const SharedQuiz = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("Submitting responses:", responses);  // Debug log
+
+    if (responses.length === 0) {
+      alert("No responses recorded. Please try again.");
+      return;
+    }
+
     try {
       await axios.post(`${QUIZ_API_END_POINT}/submit`, {
         quizId,
         answers: responses
       });
-      console.log("Quiz submitted successfully!");
+      alert("Quiz submitted successfully!");
     } catch (error) {
       console.error("Error submitting quiz:", error);
       alert("Failed to submit quiz");
     }
   };
+
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
 
