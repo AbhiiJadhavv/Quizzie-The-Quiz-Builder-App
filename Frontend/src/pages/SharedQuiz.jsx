@@ -38,11 +38,16 @@ const SharedQuiz = () => {
   const handleNext = () => {
     if (selectedOption) {
       setResponses(prevResponses => {
+        const currentQuestion = quiz.questions[currentQuestionIndex];
+        const selectedOptionData = currentQuestion.options.find(opt => opt._id === selectedOption);
+        const isCorrect = selectedOptionData?.nature === 'correct'; // Check correctness
+
         const updatedResponses = [
           ...prevResponses,
           {
-            questionId: quiz.questions[currentQuestionIndex]._id,
-            selectedOptionId: selectedOption
+            questionId: currentQuestion._id,
+            selectedOptionId: selectedOption,
+            isCorrect: isCorrect // Store correctness
           }
         ];
 
@@ -52,7 +57,7 @@ const SharedQuiz = () => {
           handleSubmit(updatedResponses);  // Pass latest responses
         }
 
-        return updatedResponses;  // Ensure state updates
+        return updatedResponses;
       });
 
       setSelectedOption(null);
