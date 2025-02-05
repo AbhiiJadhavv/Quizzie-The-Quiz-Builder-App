@@ -37,29 +37,34 @@ const SharedQuiz = () => {
 
   const handleNext = () => {
     if (selectedOption) {
-      setResponses(prevResponses => [
-        ...prevResponses,
-        {
-          questionId: quiz.questions[currentQuestionIndex]._id,
-          selectedOptionId: selectedOption
-        }
-      ]);
-      setSelectedOption(null);
+      setResponses(prevResponses => {
+        const updatedResponses = [
+          ...prevResponses,
+          {
+            questionId: quiz.questions[currentQuestionIndex]._id,
+            selectedOptionId: selectedOption
+          }
+        ];
 
-      if (currentQuestionIndex < quiz.questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        setTimeout(handleSubmit, 100);  // Slight delay to ensure state updates
-      }
+        if (currentQuestionIndex < quiz.questions.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+          handleSubmit(updatedResponses);  // Pass latest responses
+        }
+
+        return updatedResponses;  // Ensure state updates
+      });
+
+      setSelectedOption(null);
     } else {
       alert("Please select an option before proceeding.");
     }
   };
 
-  const handleSubmit = async () => {
-    console.log("Submitting responses:", responses);  // Debug log
+  const handleSubmit = async (finalResponses) => {
+    console.log("Submitting responses:", finalResponses);  // Debug log
 
-    if (responses.length === 0) {
+    if (!finalResponses || finalResponses.length === 0) {
       alert("No responses recorded. Please try again.");
       return;
     }
@@ -67,7 +72,7 @@ const SharedQuiz = () => {
     try {
       await axios.post(`${QUIZ_API_END_POINT}/submit`, {
         quizId,
-        answers: responses
+        answers: finalResponses
       });
       alert("Quiz submitted successfully!");
     } catch (error) {
@@ -75,7 +80,6 @@ const SharedQuiz = () => {
       alert("Failed to submit quiz");
     }
   };
-
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
 
