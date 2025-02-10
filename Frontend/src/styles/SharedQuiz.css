@@ -113,13 +113,13 @@
     background-color: hsl(0, 0%, 85%);
 }
 
-.quizPageOptions:active {
-    transform: scale(0.94);
-}
-
 .activeOptionShared {
     border: 5px solid #5076FF;
     border-radius: 5px;
+}
+
+.activeOptionShared {
+    transform: scale(0.94);
 }
 
 .quizPageButton {
