@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/SharedQuiz.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +8,8 @@ import TrophyImage from '../assets/TrophyImage.png';
 const SharedQuiz = () => {
   const { quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const timerRef = useRef(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [responses, setResponses] = useState([]);
@@ -31,6 +33,28 @@ const SharedQuiz = () => {
     fetchQuiz();
   }, [quizId]);
 
+  useEffect(() => {
+    if (quiz?.type === 'qna' && currentQuestion.timer !== 'off') {
+      const timeInSeconds = currentQuestion.timer === '10sec' ? 10 : 5;
+      setTimeLeft(timeInSeconds);
+
+      timerRef.current = setInterval(() => {
+        setTimeLeft(prev => {
+          if (prev <= 1) {
+            clearInterval(timerRef.current);
+            handleNext(); // Auto move to the next question
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      setTimeLeft(null);
+    }
+
+    return () => clearInterval(timerRef.current); // Cleanup on unmount or question change
+  }, [currentQuestionIndex, quiz]);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
@@ -39,34 +63,32 @@ const SharedQuiz = () => {
   };
 
   const handleNext = () => {
-    if (selectedOption) {
-      setResponses(prevResponses => {
-        const currentQuestion = quiz.questions[currentQuestionIndex];
-        const selectedOptionData = currentQuestion.options.find(opt => opt._id === selectedOption);
-        const isCorrect = selectedOptionData?.nature === 'correct'; // Check correctness
+    clearInterval(timerRef.current); // Stop the timer when moving to the next question
 
-        const updatedResponses = [
-          ...prevResponses,
-          {
-            questionId: currentQuestion._id,
-            selectedOptionId: selectedOption,
-            isCorrect: isCorrect // Store correctness
-          }
-        ];
+    setResponses(prevResponses => {
+      const currentQuestion = quiz.questions[currentQuestionIndex];
+      const selectedOptionData = currentQuestion.options.find(opt => opt._id === selectedOption);
+      const isCorrect = selectedOptionData?.nature === 'correct';
 
-        if (currentQuestionIndex < quiz.questions.length - 1) {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-        } else {
-          handleSubmit(updatedResponses);  // Pass latest responses
+      // If no option is selected before time runs out, mark it incorrect
+      const updatedResponses = [
+        ...prevResponses,
+        {
+          questionId: currentQuestion._id,
+          selectedOptionId: selectedOption || null, // Null if no option selected
+          isCorrect: selectedOption ? isCorrect : false // Mark incorrect if nothing was selected
         }
+      ];
 
-        return updatedResponses;
-      });
+      if (currentQuestionIndex < quiz.questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else {
+        handleSubmit(updatedResponses);  // Submit quiz automatically
+      }
 
       setSelectedOption(null);
-    } else {
-      alert("Please select an option before proceeding.");
-    }
+      return updatedResponses;
+    });
   };
 
   const handleSubmit = async (finalResponses) => {
@@ -102,7 +124,11 @@ const SharedQuiz = () => {
           <div className='quizPageContainer'>
             <div className='quizPageDiv1'>
               <div className='quizPageQuestionNo'><p>0{currentQuestionIndex + 1}/0{quiz.questions.length}</p></div>
-              <div className='quizPageTimer'><p>00:10s</p></div>
+              {quiz.type === 'qna' && currentQuestion.timer !== 'off' && (
+                <div className='quizPageTimer'>
+                  <p>00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}s</p>
+                </div>
+              )}
             </div>
             <div className='quizPageQuestion'>
               <p>{currentQuestion.question}</p>
@@ -133,9 +159,21 @@ const SharedQuiz = () => {
           </div>
         ) : (
           <div className='quizPageContainer2'>
-            <p className='quizPagePara'>Congrats Quiz Is Completed</p>
-            <img src={TrophyImage} alt='Trophy Image' />
-            <div><p className='quizPagePara'>Your Score is&nbsp;</p><p className='quizPageScore'> 0{score}/0{quiz.questions.length}</p></div>
+            {
+              quiz.type === 'qna' ? (
+                <>
+                  <p className='quizPagePara'>Congrats Quiz Is Completed</p>
+                  <img src={TrophyImage} alt='Trophy Image' />
+                  <div><p className='quizPagePara'>Your Score is&nbsp;</p><p className='quizPageScore'> 0{score}/0{quiz.questions.length}</p></div>
+                </>
+              ) : (
+                <>
+                  <p className='quizPagePara2'>Thank you</p>
+                  <p className='quizPagePara2'>for participating in</p>
+                  <p className='quizPagePara2'>the Poll</p>
+                </>
+              )
+            }
           </div>
         )
       }

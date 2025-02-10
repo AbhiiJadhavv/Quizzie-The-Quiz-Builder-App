@@ -168,6 +168,13 @@
     color: #474444;
 }
 
+.quizPagePara2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    color: #474444;
+}
+
 .quizPageScore {
     font-size: 2rem;
     font-weight: 700;
