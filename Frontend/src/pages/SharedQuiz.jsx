@@ -101,7 +101,7 @@ const SharedQuiz = () => {
         !showCongrats ? (
           <div className='quizPageContainer'>
             <div className='quizPageDiv1'>
-              <div className='quizPageQuestionNo'><p>{currentQuestionIndex + 1}/{quiz.questions.length}</p></div>
+              <div className='quizPageQuestionNo'><p>0{currentQuestionIndex + 1}/0{quiz.questions.length}</p></div>
               <div className='quizPageTimer'><p>00:10s</p></div>
             </div>
             <div className='quizPageQuestion'>
