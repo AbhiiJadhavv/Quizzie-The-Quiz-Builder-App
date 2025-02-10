@@ -141,6 +141,39 @@
     border-radius: 10px;
 }
 
+.quizPageContainer2 {
+    height: 75%;
+    width: 75%;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quizPageContainer2>div {
+    display: flex;
+}
+
+.quizPageContainer2>img {
+    height: 10rem;
+}
+
+.quizPagePara {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    color: #474444;
+}
+
+.quizPageScore {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    color: #60B84B;
+}
+
 @media (max-width: 780px) {
     .quizPageContainer {
         min-height: 100vh;

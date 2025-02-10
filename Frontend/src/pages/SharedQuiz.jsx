@@ -3,6 +3,7 @@ import '../styles/SharedQuiz.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { QUIZ_API_END_POINT } from '../utils/constant';
+import TrophyImage from '../assets/TrophyImage.png';
 
 const SharedQuiz = () => {
   const { quizId } = useParams();
@@ -12,6 +13,8 @@ const SharedQuiz = () => {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCongrats, setShowCongrats] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -67,19 +70,23 @@ const SharedQuiz = () => {
   };
 
   const handleSubmit = async (finalResponses) => {
-    console.log("Submitting responses:", finalResponses);  // Debug log
+    console.log("Submitting responses:", finalResponses);
 
     if (!finalResponses || finalResponses.length === 0) {
       alert("No responses recorded. Please try again.");
       return;
     }
 
+    const correctAnswers = finalResponses.filter(response => response.isCorrect).length;
+    setScore(correctAnswers);
+
     try {
       await axios.post(`${QUIZ_API_END_POINT}/submit`, {
         quizId,
         answers: finalResponses
       });
-      alert("Quiz submitted successfully!");
+      console.log("Quiz submitted successfully!");
+      setShowCongrats(true);
     } catch (error) {
       console.error("Error submitting quiz:", error);
       alert("Failed to submit quiz");
@@ -90,38 +97,48 @@ const SharedQuiz = () => {
 
   return (
     <div className='quizPage'>
-      <div className='quizPageContainer'>
-        <div className='quizPageDiv1'>
-          <div className='quizPageQuestionNo'><p>{currentQuestionIndex + 1}/{quiz.questions.length}</p></div>
-          <div className='quizPageTimer'><p>00:10s</p></div>
-        </div>
-        <div className='quizPageQuestion'>
-          <p>{currentQuestion.question}</p>
-        </div>
-        <div className='quizPageOptions'>
-          {currentQuestion.options.map(option => (
-            <div
-              key={option._id}
-              onClick={() => handleOptionSelect(option._id)}
-              className={`optionShared ${selectedOption === option._id ? 'activeOptionShared' : ''}`}
-            >
-              {currentQuestion.optionType === 'text' && <p>{option.text}</p>}
-              {currentQuestion.optionType === 'imgUrl' && <img src={option.image} alt="option" />}
-              {currentQuestion.optionType === 'textImg' && (
-                <>
-                  <p>{option.text}</p>
-                  <div><img src={option.image} alt="option" /></div>
-                </>
-              )}
+      {
+        !showCongrats ? (
+          <div className='quizPageContainer'>
+            <div className='quizPageDiv1'>
+              <div className='quizPageQuestionNo'><p>{currentQuestionIndex + 1}/{quiz.questions.length}</p></div>
+              <div className='quizPageTimer'><p>00:10s</p></div>
             </div>
-          ))}
-        </div>
-        <div className='quizPageButton'>
-          <button onClick={handleNext}>
-            {currentQuestionIndex === quiz.questions.length - 1 ? "Submit" : "Next"}
-          </button>
-        </div>
-      </div>
+            <div className='quizPageQuestion'>
+              <p>{currentQuestion.question}</p>
+            </div>
+            <div className='quizPageOptions'>
+              {currentQuestion.options.map(option => (
+                <div
+                  key={option._id}
+                  onClick={() => handleOptionSelect(option._id)}
+                  className={`optionShared ${selectedOption === option._id ? 'activeOptionShared' : ''}`}
+                >
+                  {currentQuestion.optionType === 'text' && <p>{option.text}</p>}
+                  {currentQuestion.optionType === 'imgUrl' && <img src={option.image} alt="option" />}
+                  {currentQuestion.optionType === 'textImg' && (
+                    <>
+                      <p>{option.text}</p>
+                      <div><img src={option.image} alt="option" /></div>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className='quizPageButton'>
+              <button onClick={handleNext}>
+                {currentQuestionIndex === quiz.questions.length - 1 ? "Submit" : "Next"}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className='quizPageContainer2'>
+            <p className='quizPagePara'>Congrats Quiz is completed</p>
+            <img src={TrophyImage} alt='Trophy Image' />
+            <div><p className='quizPagePara'>Your Score is </p><p className='quizPageScore'> 0{score}/0{quiz.questions.length}</p></div>
+          </div>
+        )
+      }
     </div>
   )
 }
