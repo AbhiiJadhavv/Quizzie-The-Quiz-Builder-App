@@ -149,7 +149,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
 .quizPageContainer2>div {
@@ -157,7 +158,7 @@
 }
 
 .quizPageContainer2>img {
-    height: 10rem;
+    height: 13rem;
 }
 
 .quizPagePara {
