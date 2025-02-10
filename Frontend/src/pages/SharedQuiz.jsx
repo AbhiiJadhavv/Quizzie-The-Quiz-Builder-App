@@ -133,9 +133,9 @@ const SharedQuiz = () => {
           </div>
         ) : (
           <div className='quizPageContainer2'>
-            <p className='quizPagePara'>Congrats Quiz is completed</p>
+            <p className='quizPagePara'>Congrats Quiz Is Completed</p>
             <img src={TrophyImage} alt='Trophy Image' />
-            <div><p className='quizPagePara'>Your Score is </p><p className='quizPageScore'> 0{score}/0{quiz.questions.length}</p></div>
+            <div><p className='quizPagePara'>Your Score is&nbsp;</p><p className='quizPageScore'> 0{score}/0{quiz.questions.length}</p></div>
           </div>
         )
       }
