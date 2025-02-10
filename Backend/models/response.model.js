@@ -16,7 +16,7 @@ const responseSchema = new mongoose.Schema({
             selectedOptionId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Option',
-                required: true
+                default: null
             },
             isCorrect: {
                 type: Boolean,
